@@ -1,0 +1,10 @@
+.feedback_inc_p {
+    color: #00adef;
+    font-size: 48px;
+    margin: 0 0 10px;
+}
+
+.answerFeild {
+    width: 38px;
+    border: 1px solid grey
+}

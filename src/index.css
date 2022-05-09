@@ -1,0 +1,115 @@
+html {
+  font-size: 125%;
+  font-family: 0.8rem/1.4 'IXL Verdana', Verdana, Arial, Helvetica, sans-serif
+}
+
+a {
+  text-decoration: none !important;
+  color: unset;
+}
+
+.t-green {
+  color: #719b07;
+}
+
+.fs-20 {
+  font-size: 1rem
+}
+
+.fw-700 {
+  font-weight: 700
+}
+
+.bg-lgtGreen {
+  background: #52b700 none;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: var(--bs-breadcrumb-divider, ">") !important;
+}
+
+.answerFeild {
+  width: 1.85rem;
+  border: 1px solid grey
+}
+input{
+  outline: none;
+}
+
+.crisp-button {
+  font-size: 0.75rem;
+  padding: .46em 1.5em .54em;
+  min-width: 6.75rem;
+  color: #fff;
+  border: 0 solid #999;
+  background-color: #52b700;
+  border-radius: 5px;
+  display: block;
+}
+
+.tab-box {
+  border: 1px solid #e3dbff;
+  border-radius: 2px;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.tab-box.review-box .tab-box-hd {
+  background-position: 0 0;
+}
+
+.tab-box.solve-box .tab-box-hd {
+  background-position: 0 -232px;
+}
+
+.tab-box .tab-box-hd {
+  background: #0000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAFSCAMAAADfHe90AAAAh1BMVEWlzzWQty6NtC2VvTClzzV4miZ4miZ4miZ4miZ4miZ4miZ4miZ4miZ4miZ4miZKsd5Bm8VAmcFDoMtKsd41gaU1gaU1gaU1gaU1gaU1gaU1gaU1gaU1gaU1gaX/oSn/kwf/jwL/mA//oSnafQDafQDafQDafQDafQDafQDafQDafQDafQDafQA9P+aJAAAALXRSTlP/3/+/gBC//4AAj2DvMN//3/+/gBC//4AAj2DvMN//3/+/gBC//4AAj2DvMN+ylx9+AAAAY0lEQVR4Ae3WoQ6CMQyF0W7t+N//aTGEIVAknQXB+ewRW1JzZxwCAAAAAAA/hzHfZX02q1bbrMzTG7tWD/EcVw/xuO8eojJ7iNjj7w51O/TFXwEAAAAAAJvapgYAAAAAADb1C08CF001n69jAAAAAElFTkSuQmCC) no-repeat;
+  color: #fff;
+  font: normal 6.5rem Verdana, sans-serif;
+  height: 5.6rem;
+  left: -9px;
+  position: absolute;
+  text-align: center;
+  top: 9px;
+  width: 24px;
+  z-index: 10;
+}
+
+.tab-box .tab-box-hd .rot-neg-90 {
+  font-size: 0.7rem;
+  line-height: 21px;
+  transform: rotate(-90deg) translateX(-90px);
+  -moz-transform: top left;
+  transform-origin: top left;
+  width: 4.25rem;
+}
+
+.modal-dialog {
+  margin: 11.75rem 5rem !important;
+  width: fit-content !important;
+}
+
+.accolades {
+  align-items: center;
+  background: #fcfff5 none 0 0 no-repeat;
+  border: 1px solid #8cc713;
+  border-radius: 2px;
+  box-shadow: -1px 1px 6px 0 #5174197d;
+  display: flex;
+  min-height: 130px;
+  transform: translate(0);
+  width: auto;
+}
+
+.accolades img {
+  height: 72px;
+  margin-left: 27px;
+  width: 78px;
+}
+
+.accolades h4 {
+  color: #7fad00;
+  font: 700 45px/1em Trebuchet MS, sans-serif;
+  margin: 20px 30px 25px 10px;
+  white-space: nowrap;
+}

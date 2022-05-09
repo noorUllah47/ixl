@@ -1,0 +1,29 @@
+.stateView {
+    min-width: 101px;
+}
+
+.answered .value {
+    font-size: 1.3rem
+}
+
+.heading {
+    font-size: 0.6rem
+}
+
+.time .heading {
+    background-color: #1fb2e4;
+}
+
+.time .value {
+    font-size: 0.9rem;
+    color: #c3c9c3;
+}
+
+.score .heading {
+    background-color: #e76836;
+}
+
+.score .value {
+    font-size: 1.7rem;
+    color: #777368;
+}
