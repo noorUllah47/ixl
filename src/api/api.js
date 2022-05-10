@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL:"http://34.233.200.196/api/v1/multiply/"
+  baseURL:"https://www.itsnotsolvingbackend.u2vntr.tech/v1/multiply/"
 })
 
 export function GetBoardQuestion(id){

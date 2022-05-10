@@ -11,7 +11,8 @@ const Home = () => {
  
     const [answer, setanswer] = useState('');
     const [submit, setsubmit] = useState(false);
-    const [BOardid, setBoardid] = useState(4);
+    const [BOardid, setBoardid] = useState(Math.floor(Math.random() * 100)
+    );
     const [resett, setreset] = useState(0);
 
 
