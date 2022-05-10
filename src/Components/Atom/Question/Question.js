@@ -8,28 +8,30 @@ const Question = (props) => {
     const [inputval, setInput] = useState();
    const postans= useApi(api.answerSubmit)
     const hidemodal = async ()  => {
+        props.setsubmit(true)
         try{
-         const {data}=postans.request({
+         const {data}= await postans.request({
             "questionId": props.data.id,
-            "answer": props.data.expectedAnswer
+            "answer": props.val
 
          })
-         console.log(data)
+         setInput(props.val)
+         if (props.val == props.ans) {
+             // props.chan("")
+             setTimeout(() => {
+                 props.nextQ()
+                 document.getElementById("cls").click();
+                 props.setsubmit(false)
+              setInput("")
+            props.chan("")
+             }, 1000);
+         }
+         console.log("ansresponse",data)
         }
         catch{}
         console.log({ props })
-        props.setsubmit(true)
-        setInput(props.val)
-        if (props.val == props.ans) {
-            // props.chan("")
-            setTimeout(() => {
-                props.nextQ()
-                document.getElementById("cls").click();
-                props.setsubmit(false)
-             setInput("")
-           props.chan("")
-            }, 1000);
-        }
+       
+     
 
     }
 
@@ -37,7 +39,7 @@ const Question = (props) => {
     return (
         <>
             <p>
-                {props.data.statement}
+                {props?.data?.statement}
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div>

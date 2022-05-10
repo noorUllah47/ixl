@@ -7,7 +7,6 @@ const MainComponent = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/stop" element={<MyStopwatch />} />
 
         
         
