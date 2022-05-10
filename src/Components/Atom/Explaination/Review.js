@@ -8,8 +8,8 @@ const Review = (props) => {
                 </div>
                 <div className="tab-box-bd my-3 mx-4">
                     <div className="disabled-question  ixl-practice-crate en">
-                        <p>How do you write this number using digits?</p>
-                        <p><b>five</b></p>
+                        <p>How do you write this number using digits?{props?.data?.statement}</p>
+                        {/* <p><b>five</b></p> */}
                         <input className='answerFeild' value={''} readOnly={true} />
                     </div>
                     <h3 className='t-green fs-20 my-3'>You answered:</h3>

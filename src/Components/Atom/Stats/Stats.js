@@ -1,11 +1,25 @@
 import React ,{useEffect}from 'react'
 import Timerr from '../Timer/Timer';
 import classes from './Stats.module.css'
+import { useStopwatch } from 'react-timer-hook';
 
 import MyStopwatch from '../Timer/Timer';
-const Stats = ({details}) => {
+const Stats = ({details,StartNew,resett}) => {
+    const {
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        reset,
+      } = useStopwatch({ autoStart: true });
 
-
+function newboard(){
+    StartNew()
+    reset()
+}
     return ( 
         <>
         <div className={`${classes.stateView} order-1 order-md-2`}>
@@ -23,7 +37,14 @@ const Stats = ({details}) => {
                                         <p className='text-white text-center py-1 mb-0'>Time Elapsed</p>
                                     </div>
                                     <div className={`${classes.value} fw-700 text-center py-3`}>
-                                        <p className="mb-0"><MyStopwatch/></p>
+                                        <p className="mb-0"> <div style={{textAlign: 'center'}}>
+  
+  <div style={{fontSize: '25px'}}>
+ <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+
+  </div>
+
+</div></p>
                                     </div>
                                     {/* {MyStopwatch} */}
                                 </div>
@@ -36,6 +57,7 @@ const Stats = ({details}) => {
                                     </div>
                                 </div>
                             </div>
+                            <button onClick={newboard} className={`btn btn-primary ${classes.newbtn}`}> New </button>
                         </div>
         </>
      );

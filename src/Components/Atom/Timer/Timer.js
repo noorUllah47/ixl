@@ -1,7 +1,7 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import { useStopwatch } from 'react-timer-hook';
 
-export default  function MyStopwatch() {
+export default  function MyStopwatch({resett}) {
   const {
     seconds,
     minutes,
@@ -13,12 +13,16 @@ export default  function MyStopwatch() {
     reset,
   } = useStopwatch({ autoStart: true });
 
+  console.log("resttttt",resett)
+
+
 
   return (
     <div style={{textAlign: 'center'}}>
   
       <div style={{fontSize: '25px'}}>
      <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+    
       </div>
     
     </div>

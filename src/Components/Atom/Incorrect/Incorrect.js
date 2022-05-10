@@ -26,7 +26,7 @@ const Incorect = (props) => {
             <div>
             <button className="crisp-button ms-auto" onClick={backtoQ} >Got it</button>
             </div>
-            <Explaination  val={props.val} />
+            <Explaination data={props?.data} val={props.val} />
         </div>
         </>
      );

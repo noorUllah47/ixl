@@ -5,32 +5,41 @@ import useApi from "../../../Hooks/useApi";
 
 const Question = (props) => {
 
-    const [inputval, setInput] = useState();
+    const [inputval, setInput] = useState(true);
    const postans= useApi(api.answerSubmit)
     const hidemodal = async ()  => {
         props.setsubmit(true)
-        try{
-         const {data}= await postans.request({
-            "questionId": props.data.id,
-            "answer": props.val
-
-         })
-         setInput(props.val)
-         if (props.val == props.ans) {
-             // props.chan("")
-             setTimeout(() => {
-                 props.nextQ()
-                 document.getElementById("cls").click();
-                 props.setsubmit(false)
-              setInput("")
-            props.chan("")
-             }, 1000);
-         }
-         console.log("ansresponse",data)
+        if(!props.val){
+            props.setsubmit(false)
+            setInput(false)
         }
-        catch{}
-        console.log({ props })
+        else{
+            try{
+           
+                const {data}= await postans.request({
+                   "questionId": props.data.id,
+                   "answer": props.val
        
+                })
+                setInput(props.val)
+                if (props.val == props.ans) {
+                    // props.chan("")
+                    setTimeout(() => {
+                        props.nextQ()
+                        document.getElementById("cls").click();
+                        props.setsubmit(false)
+                     setInput("")
+                   props.chan("")
+                    }, 1000);
+                }
+                console.log("ansresponse",data)
+               }
+               catch{}
+               console.log({ props })
+              
+
+        }
+      
      
 
     }
@@ -43,14 +52,14 @@ const Question = (props) => {
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div>
-                <input name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} />
-
+                
+                <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} />
             </div>
+                {inputval===false?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""}
             <div className="mt-3">
-                {/* {props.val !== props.ans? */}
-                    {/* <button className="bg-lgtGreen border-0 text-white rounded px-3 py-1" onClick={hidemodal}>Submit</button>  */}
+              
                     <button className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={props.val !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
-                    {/* } */}
+                  
 
             </div>
 
