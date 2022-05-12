@@ -5,8 +5,7 @@ import classes from './incorect.module.css'
 const Incorect = (props) => {
     const backtoQ = () => {
         console.log({ props })
-      
-      
+     
             
                 props.nextQ()
                 props.setsubmit(false)

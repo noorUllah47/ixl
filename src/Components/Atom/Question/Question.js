@@ -4,7 +4,7 @@ import * as api from "../../../api/api"
 import useApi from "../../../Hooks/useApi";
 
 const Question = (props) => {
-
+console.log("Expected asnswewe",props.ans, props.data?.data?.id)
     const [inputval, setInput] = useState(true);
    const postans= useApi(api.answerSubmit)
     const hidemodal = async ()  => {
@@ -17,7 +17,7 @@ const Question = (props) => {
             try{
            
                 const {data}= await postans.request({
-                   "questionId": props.data.id,
+                   "questionId": props.data?.data?.id,
                    "answer": props.val
        
                 })
@@ -48,7 +48,7 @@ const Question = (props) => {
     return (
         <>
             <p>
-                {props?.data?.statement}
+                {props?.data?.data?.Statement}
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div>

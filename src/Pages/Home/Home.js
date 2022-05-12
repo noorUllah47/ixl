@@ -11,7 +11,7 @@ const Home = () => {
  
     const [answer, setanswer] = useState('');
     const [submit, setsubmit] = useState(false);
-    const [BOardid, setBoardid] = useState(Math.floor(Math.random() * 100)
+    const [BOardid, setBoardid] = useState(Math.floor(Math.random() * 10)
     );
     const [resett, setreset] = useState(0);
 
@@ -41,7 +41,7 @@ async function StartNew() {
     // setBoardid(prev=>prev+1)
     try {
         const { data } = await Startnewb.request();
-        setBoardid(data.id)
+        setBoardid(data.data.id)
          await getBDetails.request();
 
     
@@ -49,10 +49,10 @@ async function StartNew() {
 } catch (error) {}  
 }
 console.log("Board new",BOardid)
-console.log("Question",getQ.data)
+console.log("Question",getQ.data?.data)
 
 
-console.log("ddddddddddddd",getBDetails.data)
+console.log("ddddddddddddd",getBDetails.data?.data?.CorrectAnswers)
 
 
 
@@ -65,7 +65,7 @@ fetchQData()
 
 }, [BOardid])
 
-const expectedAns= getQ?.data?.expectedAnswer+"";
+const expectedAns= getQ?.data?.data?.ExpectedAnswer+"";
 
 console.log("answer",answer)
     return (
@@ -73,7 +73,7 @@ console.log("answer",answer)
             <div>
                 <div className="bg-light">
                     <div className="container">
-                        <BreadCrumbs />
+                        <BreadCrumbs data={getQ.data}/>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@ console.log("answer",answer)
                             
                             {submit && answer !==expectedAns?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
                         </div>
-                        <Stats  resett={resett} StartNew={StartNew} details={getBDetails?.data} />
+                        <Stats  resett={resett} StartNew={StartNew} details={getBDetails?.data?.data} />
                     </div>
                 </div>
             </div>
