@@ -17,3 +17,6 @@ export function answerSubmit(data){
 export function StartNewboard(){
   return api.get("start-new", )
 }
+export function DeleteBoard(id){
+  return api.delete(`delete-board/${id}`, )
+}

@@ -12,9 +12,9 @@ const Explaination = (props) => {
                     <div className="tab-box review-box">
                         <Review data={props?.data} ans={props.ans} val={props.val} />
                     </div>
-                    {/* <div className="tab-box solve-box">
-                        <Solve />
-                    </div> */}
+                    <div className="tab-box solve-box">
+                        <Solve data={props?.data} ans={props.ans} val={props.val} />
+                    </div>
 
                 </div>
             </div>

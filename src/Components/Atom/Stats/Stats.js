@@ -4,7 +4,7 @@ import classes from "./Stats.module.css";
 import { useStopwatch } from "react-timer-hook";
 
 import MyStopwatch from "../Timer/Timer";
-const Stats = ({ details, StartNew, resett }) => {
+const Stats = ({ details, StartNew, resett ,handleDelete}) => {
   const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: true });
 
@@ -43,10 +43,20 @@ const Stats = ({ details, StartNew, resett }) => {
             </div>
             {/* {MyStopwatch} */}
           </div>
+          {/* <div className={`${classes.score} bg-light`}>
+            <div className={`${classes.heading} fw-700 mb-0`}>
+              <p className="text-white text-center py-1 mb-0">
+            Wrong Answer
+              </p>
+            </div>
+            <div className={`${classes.value} fw-700 text-center py-3`}>
+              <p className="mb-0">{details?.WrongAnswers}</p>
+            </div>
+          </div> */}
           <div className={`${classes.score} bg-light`}>
             <div className={`${classes.heading} fw-700 mb-0`}>
               <p className="text-white text-center py-1 mb-0">
-                SmartScore out of 100
+                SmartScore out of 10
               </p>
             </div>
             <div className={`${classes.value} fw-700 text-center py-3`}>
@@ -61,6 +71,13 @@ const Stats = ({ details, StartNew, resett }) => {
           {" "}
           New{" "}
         </button>
+        {/* <button
+          onClick={()=>handleDelete(details?.id)}
+          className={`btn btn-danger ${classes.newbtn}`}
+        >
+          {" "}
+          Delete{" "}
+        </button> */}
       </div>
     </>
   );

@@ -6,7 +6,10 @@ import BreadCrumbs from './BreadCrumbs';
 import classes from './Home.module.css';
 import * as api from  "../../api/api"
 import useApi from "../../Hooks/useApi";
-
+// interface User {
+//     // BOardid: number;
+//   }
+   
 const Home = () => {
  
     const [answer, setanswer] = useState('');
@@ -20,25 +23,31 @@ const Home = () => {
     const Startnewb = useApi(api.StartNewboard);
        
     const getBDetails = useApi(api.GetBoardDetails);
-
-
+    const deleteboard= useApi(api.DeleteBoard)
+ 
+    async function handleDelete(id){
+        console.log("Clicked" ,id)
+        try{
+            const {data}= await deleteboard.request(id)
+            console.log("Delete",data)
+        }
+        catch{}
+    }
     async function fetchQData() {
-// let id=Startnewb?.data?.id
 
         try {
-            // const { data } = await camp.request();
-            // setBoardid(Startnewb?.data?.id)
+          
             const { data } = await getQ.request(BOardid);
              await getBDetails.request(BOardid);
 
-        //    data = request.data.users
+     
         
         
     } catch (error) {}  
 }
 async function StartNew() {
      setreset(1)
-    // setBoardid(prev=>prev+1)
+   
     try {
         const { data } = await Startnewb.request();
         setBoardid(data.data.id)
@@ -49,10 +58,9 @@ async function StartNew() {
 } catch (error) {}  
 }
 console.log("Board new",BOardid)
-console.log("Question",getQ.data?.data)
+console.log("Question",getQ?.data?.data)
 
 
-console.log("ddddddddddddd",getBDetails.data?.data?.CorrectAnswers)
 
 
 
@@ -60,20 +68,20 @@ console.log("ddddddddddddd",getBDetails.data?.data?.CorrectAnswers)
      
     
 fetchQData()
-// StartNew()
+
 
 
 }, [BOardid])
 
 const expectedAns= getQ?.data?.data?.ExpectedAnswer+"";
-
+const Details=getBDetails?.data?.data
 console.log("answer",answer)
     return (
         <>
             <div>
                 <div className="bg-light">
                     <div className="container">
-                        <BreadCrumbs data={getQ.data}/>
+                        <BreadCrumbs data={getQ.data?.data}/>
                     </div>
                 </div>
 
@@ -83,7 +91,7 @@ console.log("answer",answer)
                             
                             {submit && answer !==expectedAns?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
                         </div>
-                        <Stats  resett={resett} StartNew={StartNew} details={getBDetails?.data?.data} />
+                        <Stats handleDelete={handleDelete} resett={resett} StartNew={StartNew} details={Details} />
                     </div>
                 </div>
             </div>

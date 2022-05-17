@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Solve = () => {
+const Solve = (props) => {
     return (
         <>
             <div className="tab-box-hd">
@@ -8,14 +8,14 @@ const Solve = () => {
             </div>
             <div className="tab-box-bd my-3 mx-4">
                 <div className="disabled-question  ixl-practice-crate en">
-                    <p>Remember how to write numbers from 1 to 10. </p>
+                    <p>Remember how to Multiply numbers . </p>
                     <div className="old-space-indent">
                         <table style={{border: 'solid 2px #9554bf',backgroundColor: '#ffe8ff'}}>
                             <tr>
                                 <td width="35">1</td>
-                                <td>one</td>
+                                <td>{props.ans}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <td width="35">2</td>
                                 <td>two</td>
                             </tr>
@@ -50,7 +50,7 @@ const Solve = () => {
                             <tr>
                                 <td width="35">10</td>
                                 <td>ten</td>
-                            </tr>
+                            </tr> */}
                         </table>
 
                     </div>
