@@ -118,19 +118,20 @@ function Donut() {
   const [series, setseries] = useState(     [{
     id:1,
     name: 'Jane',
-    data: [1, 0, 4]
+    data: [6]
 }, ]
            )
 
 function addAnotherPoint(){
   setLine(1)
   console.log(series,Line)
+  if(series.length<2){
   setseries([...series,{
   
   name: 'jon',
   data: [ 8]
 }])
-}
+}}
 
 function removePoint(index){
   // const list =[...series];
