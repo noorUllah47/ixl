@@ -223,7 +223,6 @@ function removePoint(index){
                 console.log("remove event",this.series.name,Line)
                 if(this.series.name==="Jane"){
                   setLine(0)
-                   series[0].select()
                   if (this.series.data.length > 0) {
                     this.remove();
                   }
