@@ -49,7 +49,8 @@ console.log("Expected asnswewe",props.ans, props.data?.data?.id)
     return (
         <>
             <p>
-                {props?.data?.data?.Statement}
+            Graph the point (8,3) on the coordinate plane
+                {/* {props?.data?.data?.Statement} */}
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div className='questiondiv' >

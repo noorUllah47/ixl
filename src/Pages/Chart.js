@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import Highcharts from 'highcharts';
+import Highcharts, { chart } from 'highcharts';
 
 // class Donut extends React.Component {
 //     constructor(props) {
@@ -115,12 +115,29 @@ import Highcharts from 'highcharts';
 // export default Donut;
 
 function Donut() {
-  const [series, setseries] = useState(  [{},{
-       
-           
-        },  ])
+  const [series, setseries] = useState(     [{
+    id:1,
+    name: 'Jane',
+    data: [1, 0, 4]
+}, ]
+           )
 
+function addAnotherPoint(){
+  setLine(1)
+  console.log(series,Line)
+  setseries([...series,{
+  
+  name: 'jon',
+  data: [ 8]
+}])
+}
 
+function removePoint(index){
+  // const list =[...series];
+  // list.splice(index,1)
+  // setseries(list)
+  chart.series[0].removePoint(0);
+}
         const [Line, setLine] = useState(0)
   function highChartsRender() {
   Highcharts.chart({
@@ -134,10 +151,9 @@ function Donut() {
         events: {
           click: function (e) {
             // find the clicked values and the series
-            console.log("VAluesX",e.xAxis[Line].value,"VAluesY",e.yAxis[Line].value,this.series[Line].data)
-            var x = Math.round(e.xAxis[Line].value),
-              y = Math.round(e.yAxis[Line].value),
-              series = this.series[Line];
+            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line)
+            var x = Math.round(e.xAxis[0].value),
+              y = Math.round(e.yAxis[0].value),
               series = this.series[Line];
 
 
@@ -154,7 +170,7 @@ function Donut() {
         floating: true,
         text: 'plot here',
         style: {
-          fontSize: '30px',
+          fontSize: '20px',
         }
       },
       accessibility: {
@@ -204,8 +220,24 @@ function Donut() {
             events: {
               click: function (e) {
                 console.log(e)
-                if (this.series.data.length > 0) {
-                  this.remove();
+                console.log("remove event",this.series.name,Line)
+                if(this.series.name==="Jane"){
+                  setLine(0)
+                   series[0].select()
+                  if (this.series.data.length > 0) {
+                    this.remove();
+                  }
+                }
+                if(this.series.name==="Jon"){
+                  setLine(1)
+                  if (this.series.data.length > 0) {
+                    this.remove();
+                  }
+                }else{
+                  setLine(0)
+                  if (this.series.data.length > 0) {
+                    this.remove();
+                  }
                 }
               
               }
@@ -219,11 +251,14 @@ function Donut() {
 
 useEffect(() => {
   highChartsRender()
-}, [])
+}, [series,Line])
 
   return (
+    <>
     <div id="atmospheric-composition">
     </div>
+      <button onClick={addAnotherPoint} className='btn btn-primary'>Add Point</button>
+      </>
   )
 }
 
