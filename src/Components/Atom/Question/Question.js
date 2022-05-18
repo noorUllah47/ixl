@@ -2,6 +2,7 @@ import React, { useState ,useEffect} from 'react'
 import classes from './Qstn.module.css'
 import * as api from "../../../api/api"
 import useApi from "../../../Hooks/useApi";
+import Donut from '../../../Pages/Chart';
 
 const Question = (props) => {
 console.log("Expected asnswewe",props.ans, props.data?.data?.id)
@@ -51,9 +52,9 @@ console.log("Expected asnswewe",props.ans, props.data?.data?.id)
                 {props?.data?.data?.Statement}
                 </p>
             {/* <p className="fw-700">five</p> */}
-            <div>
-                
-                <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} />
+            <div className='questiondiv' >
+                <Donut/>
+                {/* <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} /> */}
             </div>
                 {inputval===false?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""}
             <div className="mt-3">

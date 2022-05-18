@@ -11,13 +11,13 @@ import Home from "../Pages/Home/Home";
 const MainComponent = () => {
   return (
     <>
-    <Donut />
-      {/* <Routes>
+    {/* <Donut /> */}
+      <Routes>
         <Route path="/" element={<Home />} />
 
         
         
-      </Routes> */}
+      </Routes>
     </>
   );
 };
