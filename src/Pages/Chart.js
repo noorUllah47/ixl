@@ -122,16 +122,40 @@ function Donut() {
 }, ]
            )
 
-function addAnotherPoint(){
-  setLine(1)
-  console.log(series,Line)
-  if(series.length<2){
-  setseries([...series,{
+
+           function SeriesShift(name){
+             console.log("------------------",name)
+             if(name==="Jane"){
+
+               setLine(0)
+             }
+             if(name==="Jon"){
+              setLine(1)
+              console.log(series,Line)
+              if(series.length<2){
+              setseries([...series,{
+              
+              name: 'jon',
+              data: [ 8]
+            }])
+            } 
+              setLine(1)
+
+             }
+           }
+// function addAnotherPoint(){
+//   setLine(1)
+//   console.log(series,Line)
+//   if(series.length<2){
+//   setseries([...series,{
   
-  name: 'jon',
-  data: [ 8]
-}])
-}}
+//   name: 'jon',
+//   data: [ 8]
+// }])
+// }
+
+
+// }
 
 function removePoint(index){
   // const list =[...series];
@@ -142,7 +166,7 @@ function removePoint(index){
         const [Line, setLine] = useState(0)
   function highChartsRender() {
   Highcharts.chart({
-    // tooltip:true,
+    tooltip:true,
       chart: {
         showAxes: true,
 
@@ -152,7 +176,7 @@ function removePoint(index){
         events: {
           click: function (e) {
             // find the clicked values and the series
-            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line)
+            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line,this.name)
             var x = Math.round(e.xAxis[0].value),
               y = Math.round(e.yAxis[0].value),
               series = this.series[Line];
@@ -160,8 +184,9 @@ function removePoint(index){
 
     
             // Add it
+            if(this.series[Line].data.length<2){
             series.addPoint([x, y]);
-    
+            }
           }
         },
         renderTo: 'atmospheric-composition'
@@ -205,9 +230,8 @@ function removePoint(index){
         //   color: '#808080'
         // }]
       },
-      legend: {
-        enabled: false
-      },
+     
+    legend: false,
       exporting: {
         enabled: false
       },
@@ -217,27 +241,30 @@ function removePoint(index){
         },
         series: {
           lineWidth: 1,
+          events: {
+            click: function (event) {
+              // alert(this.name)
+          // if(this.name==="Jane"){
+          //     setLine(0)
+          //   }
+          //   if(this.name==="Jon"){
+          //     setLine(1)
+          //   }
+          // SeriesShift(this.name)
+            }
+        },
           point: {
             events: {
+           
+              
               click: function (e) {
                 console.log(e)
                 console.log("remove event",this.series.name,Line)
-                if(this.series.name==="Jane"){
-                  setLine(0)
+               
                   if (this.series.data.length > 0) {
                     this.remove();
-                  }
-                }
-                if(this.series.name==="Jon"){
-                  setLine(1)
-                  if (this.series.data.length > 0) {
-                    this.remove();
-                  }
-                }else{
-                  setLine(0)
-                  if (this.series.data.length > 0) {
-                    this.remove();
-                  }
+                    
+                  
                 }
               
               }
@@ -257,7 +284,11 @@ useEffect(() => {
     <>
     <div id="atmospheric-composition">
     </div>
-      <button onClick={addAnotherPoint} className='btn btn-primary'>Add Point</button>
+      {/* <button onClick={addAnotherPoint} className='btn btn-primary'>Add Point</button> */}
+      <div className='seriesbtns'>
+      <button onClick={()=>SeriesShift("Jane")} className='sm serbbtn btn btn-primary mx-3'>Line1</button>
+      <button onClick={()=>SeriesShift("Jon")} className='sm btn serbbtn btn-secondary '>Line2</button>
+      </div>
       </>
   )
 }

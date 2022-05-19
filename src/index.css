@@ -113,3 +113,12 @@ input{
   margin: 20px 30px 25px 10px;
   white-space: nowrap;
 }
+.seriesbtns{
+  max-width: 650px;
+  display: flex;
+  justify-content: center;
+}
+.serbbtn{
+  box-shadow: none;
+  border: none;
+}
