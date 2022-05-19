@@ -49,10 +49,8 @@ console.log("Expected asnswewe",props.ans, props.data?.data?.id)
     return (
         <>
             <p>
-            Graph these equations:
-y= -1/2x + 1
-y= 2/3x – 6 
-Click to select points on the graph.
+            Graph these points: L1 (8,5) L2 (3,7) 
+
                 {/* {props?.data?.data?.Statement} */}
                 </p>
             {/* <p className="fw-700">five</p> */}

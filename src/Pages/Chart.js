@@ -170,13 +170,13 @@ function removePoint(index){
       chart: {
         showAxes: true,
 
-        width: 700,
+        width: 600,
         type: 'scatter',
         margin: [50],
         events: {
           click: function (e) {
             // find the clicked values and the series
-            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line,this.name)
+            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line,this.series[0].data)
             var x = Math.round(e.xAxis[0].value),
               y = Math.round(e.yAxis[0].value),
               series = this.series[Line];
@@ -184,7 +184,7 @@ function removePoint(index){
 
     
             // Add it
-            if(this.series[Line].data.length<2){
+            if(this.series[Line].data.length<1){
             series.addPoint([x, y]);
             }
           }
@@ -282,7 +282,7 @@ useEffect(() => {
 
   return (
     <>
-    <div id="atmospheric-composition">
+    <div className='graphmain' id="atmospheric-composition">
     </div>
       {/* <button onClick={addAnotherPoint} className='btn btn-primary'>Add Point</button> */}
       <div className='seriesbtns'>
