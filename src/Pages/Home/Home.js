@@ -58,7 +58,7 @@ async function StartNew() {
 } catch (error) {}  
 }
 console.log("Board new",BOardid)
-console.log("Question",getQ?.data?.data)
+console.log("Question",getQ?.data)
 
 
 
@@ -89,7 +89,7 @@ console.log("answer",answer)
                     <div className="d-flex w-100">
                         <div className={`${classes.practiceView} order-2 order-md-1 px-4`}>
                             
-                            {submit && answer !==expectedAns?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
+                            {submit && answer !==expectedAns?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question  details={Details} chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
                         </div>
                         <Stats handleDelete={handleDelete} resett={resett} StartNew={StartNew} details={Details} />
                     </div>

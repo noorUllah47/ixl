@@ -114,7 +114,7 @@ import Highcharts, { chart } from 'highcharts';
 
 // export default Donut;
 
-function Donut() {
+function Donut({ans,gInput}) {
   const [series, setseries] = useState(     [{
     id:1,
     name: 'Jane',
@@ -156,7 +156,12 @@ function Donut() {
 
 
 // }
+ function getPoint(){
 
+  console.log("Seriiesss-------------------X",series[0].data[0][0],"Y",series[0].data[0][1],"asnssss",ans)
+
+  gInput({x:series[0].data[0][0],y:series[0].data[0][1]})
+}
 function removePoint(index){
   // const list =[...series];
   // list.splice(index,1)
@@ -176,7 +181,7 @@ function removePoint(index){
         events: {
           click: function (e) {
             // find the clicked values and the series
-            console.log("VAluesX",e.xAxis[0].value,"VAluesY",e.yAxis[0].value,this.series[Line].name,"Line====",Line,this.series[0].data)
+            console.log("VAluesX",Math.round(e.xAxis[0].value),"VAluesY",Math.round(e.yAxis[0].value),this.series[Line].data,"Line====",Line,this.series[0].data)
             var x = Math.round(e.xAxis[0].value),
               y = Math.round(e.yAxis[0].value),
               series = this.series[Line];
@@ -186,6 +191,7 @@ function removePoint(index){
             // Add it
             if(this.series[Line].data.length<1){
             series.addPoint([x, y]);
+            getPoint()
             }
           }
         },
@@ -209,9 +215,10 @@ function removePoint(index){
         minPadding: 0.2,
         maxPadding: 0.2,
         max: 10,
-        min: 0,
+        min: -8,
 
-        maxZoom: 60
+        maxZoom: 60,
+      
       },
       yAxis: {
         
@@ -220,7 +227,7 @@ function removePoint(index){
         },
         minPadding: 0.2,
         max: 10,
-        min: 0,
+        min: -9,
 
         maxPadding: 0.2,
         maxZoom: 60,
@@ -286,8 +293,8 @@ useEffect(() => {
     </div>
       {/* <button onClick={addAnotherPoint} className='btn btn-primary'>Add Point</button> */}
       <div className='seriesbtns'>
-      <button onClick={()=>SeriesShift("Jane")} className='sm serbbtn btn btn-primary mx-3'>Line1</button>
-      <button onClick={()=>SeriesShift("Jon")} className='sm btn serbbtn btn-secondary '>Line2</button>
+      {/* <button onClick={()=>SeriesShift("Jane")} className='sm serbbtn btn btn-primary mx-3'>Line1</button>
+      <button onClick={()=>SeriesShift("Jon")} className='sm btn serbbtn btn-secondary '>Line2</button> */}
       </div>
       </>
   )
