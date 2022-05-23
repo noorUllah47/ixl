@@ -81,7 +81,7 @@ const Question = (props) => {
                    "answer": inputval
        
                 })
-                if (inputval === props.ans) {
+                if (inputval.replace(/\s/g, '') === props.ans.replace(/\s/g, '')) {
                     props.setsubmit(true)
                     setTimeout(() => {
                         props.nextQ()
@@ -123,6 +123,7 @@ const Question = (props) => {
                 <>
                 
                  <input required="true" name='answer'   value={inputval} className={classes.answerFeild} onChange={e => { setInput(e.target.value) }} /> 
+                 {/* <input type="submit" hidden /> */}
                  {/* {!inputval?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""} */}
                  </>
                  :         
@@ -136,7 +137,7 @@ const Question = (props) => {
             </div>
             <div className="mt-3">
             {/* {modeltogle }---{props.ans} */}
-                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
+                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle.replace(/\s/g, '') !== props.ans.replace(/\s/g, '')? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
                   
 
             </div>
