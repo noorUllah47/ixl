@@ -19,7 +19,7 @@ const Stats = ({ details, StartNew, resett ,handleDelete}) => {
           <div className={`${classes.answered} bg-light`}>
             <div className={`${classes.heading} bg-lgtGreen fw-700 mb-0`}>
               <p className="text-white text-center py-1 mb-0">
-                Questions answered
+                Questions answred
               </p>
             </div>
             <div className={`${classes.value} fw-700 text-center py-3`}>
