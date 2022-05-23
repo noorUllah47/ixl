@@ -9,10 +9,10 @@ const api = axios.create({
 // }
 export function GetBoardQuestion(id){
   console.log("asdasdsdsad",id)
-  return api.get(`asked-question/${13}`, )
+  return api.get(`asked-question/${id}`, )
 }
 export function GetBoardDetails(id){
-  return api.get(`get-board-details/${13}`, )
+  return api.get(`get-board-details/${id}`, )
 }
 export function answerSubmit(data){
   console.log("ansssssssssssssssssss-",data)
@@ -24,3 +24,10 @@ export function StartNewboard(){
 export function DeleteBoard(id){
   return api.delete(`delete-board/${id}`, )
 }
+
+// const {data}= await postans.request({
+//   "questionId": props.data?.data?.id,
+//   "answer": props.val
+
+// })
+// const graphvalues=`x = ${graphInput.x}, y = ${graphInput.y}`

@@ -174,8 +174,8 @@ function removePoint(index){
     tooltip:true,
       chart: {
         showAxes: true,
-
-        width: 600,
+       height:480,
+        width: 700,
         type: 'scatter',
         margin: [50],
         events: {
@@ -215,10 +215,14 @@ function removePoint(index){
         minPadding: 0.2,
         maxPadding: 0.2,
         max: 10,
-        min: -8,
+        min: -10,
 
         maxZoom: 60,
-      
+        plotLines: [{
+          color: '#212529',
+            width: 2,
+        value:0
+        }]
       },
       yAxis: {
         
@@ -231,11 +235,11 @@ function removePoint(index){
 
         maxPadding: 0.2,
         maxZoom: 60,
-        // plotLines: [{
-        //   value: 0,
-        //   width: 1,
-        //   color: '#808080'
-        // }]
+        plotLines: [{
+          color: '#212529',
+            width: 2,
+        value:0
+        }]
       },
      
     legend: false,

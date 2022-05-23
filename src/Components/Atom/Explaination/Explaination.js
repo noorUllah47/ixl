@@ -13,7 +13,7 @@ const Explaination = (props) => {
                         <Review data={props?.data} ans={props.ans} val={props.val} />
                     </div>
                     <div className="tab-box solve-box">
-                        <Solve data={props?.data} ans={props.ans} val={props.val} />
+                        {/* <Solve data={props?.data} ans={props.ans} val={props.val} /> */}
                     </div>
 
                 </div>

@@ -56,11 +56,11 @@ const Stats = ({ details, StartNew, resett ,handleDelete}) => {
           <div className={`${classes.score} bg-light`}>
             <div className={`${classes.heading} fw-700 mb-0`}>
               <p className="text-white text-center py-1 mb-0">
-                SmartScore out of 10
+              Wrong Answres
               </p>
             </div>
             <div className={`${classes.value} fw-700 text-center py-3`}>
-              <p className="mb-0">{details?.UserScore}</p>
+              <p className="mb-0">{details?.WrongAnswers}</p>
             </div>
           </div>
         </div>

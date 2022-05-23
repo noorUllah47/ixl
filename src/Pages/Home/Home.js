@@ -13,7 +13,7 @@ import useApi from "../../Hooks/useApi";
 const Home = () => {
  
     const [answer, setanswer] = useState('');
-    const [submit, setsubmit] = useState(false);
+    const [submit, setsubmit] = useState(true);
     const [BOardid, setBoardid] = useState(Math.floor(Math.random() * 50)
     );
     const [resett, setreset] = useState(0);
@@ -59,6 +59,8 @@ async function StartNew() {
 }
 console.log("Board new",BOardid)
 console.log("Question",getQ?.data)
+console.log("GetBoard detaile",getBDetails.data)
+
 
 
 
@@ -75,7 +77,7 @@ fetchQData()
 
 const expectedAns= getQ?.data?.data?.ExpectedAnswer+"";
 const Details=getBDetails?.data?.data
-console.log("answer",answer)
+console.log("answer",answer,expectedAns)
     return (
         <>
             <div>
@@ -85,11 +87,11 @@ console.log("answer",answer)
                     </div>
                 </div>
 
-                <div className="container mt-5">
+                <div className="container ">
                     <div className="d-flex w-100">
                         <div className={`${classes.practiceView} order-2 order-md-1 px-4`}>
                             
-                            {submit && answer !==expectedAns?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question  details={Details} chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
+                            {submit ===false?  <Incorect val={answer} ans={expectedAns} nextQ={fetchQData}  chan={setanswer} setsubmit={setsubmit} data={getQ?.data} />: <Question  details={Details} chan={setanswer} val={answer} ans={expectedAns} data={getQ?.data} setsubmit={setsubmit}  nextQ={fetchQData} />}
                         </div>
                         <Stats handleDelete={handleDelete} resett={resett} StartNew={StartNew} details={Details} />
                     </div>

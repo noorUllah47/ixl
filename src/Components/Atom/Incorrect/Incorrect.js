@@ -8,7 +8,7 @@ const Incorect = (props) => {
      
             
                 props.nextQ()
-                props.setsubmit(false)
+                props.setsubmit(true)
                 props.chan("")
       
         // }

@@ -5,69 +5,127 @@ import useApi from "../../../Hooks/useApi";
 import Donut from '../../../Pages/Chart';
 
 const Question = (props) => {
-console.log("Expected asnswewe",props.ans, props.data?.data?.id,props.chen)
-    const [inputval, setInput] = useState(true);
+    console.log("Expected asnswewe",props.ans, props.data?.data?.id)
+    const [inputval, setInput] = useState();
+    const [modeltogle, setModeltogle] = useState()
     const [graphInput, setGraphInput] = useState({
         x:0,
         y:0
     });
-console.log("finallllllllllll-----------------",graphInput)
-const postans= useApi(api.answerSubmit)
-const hidemodal = async ()  => {
-    if(props.details.UserComplexityLevel>1){
-        props.chan(graphInput)
-    }
+    console.log("finallllllllllll-----------------",graphInput)
+    const graphvalues=`x = ${graphInput.x}, y = ${graphInput.y}`
+    const postans= useApi(api.answerSubmit)
+    console.log(inputval)
+    useEffect(() => {
+    
+        if(props.details?.UserComplexityLevel===1){
+            setModeltogle(graphvalues)}
+            else{
+           setModeltogle(inputval)
+            }
+    }, [inputval])
+    useEffect(() => {
+    
+        if(props.details?.UserComplexityLevel===1){
+            setModeltogle(graphvalues)}
+            else{
+           setModeltogle(inputval)
+            }
+    }, [graphvalues])
+    
+    const hidemodal = async ()  => {
+    // if(props.details.UserComplexityLevel<1){
+        // props.chan(graphInput)
+    // }
 
-    props.setsubmit(true)
-    if(!props.val){
-            props.setsubmit(false)
-            setInput(false)
-        }
-        else{
+    // props.setsubmit(true)
+    // if(graphvalues){
+    //         props.setsubmit(false)
+    //         setInput(false)
+    //     }
+        // else{
+            
+            if(props.details?.UserComplexityLevel===1){
             try{
            
                 const {data}= await postans.request({
                    "questionId": props.data?.data?.id,
-                   "answer": props.val
+                   "answer": graphvalues
        
                 })
-                setInput(props.val)
-                if (props.val == props.ans) {
-                    // props.chan("")
+                if (graphvalues === props.ans) {
+                    props.setsubmit(true)
+
                     setTimeout(() => {
                         props.nextQ()
-                        // document.getElementById("cls").click();
-                        props.setsubmit(false)
-                        setInput("")
-                        props.chan("")
+                        document.getElementById("cls").click();
+                        // props.setsubmit(false)
+                        console.log("aaaaaaaa")
+                        // setInput("")
+                        // props.chan("")
                     }, 1000);
+                }
+                else{
+                    props.setsubmit(false)
+
                 }
                 console.log("ansresponse",data)
             }
             catch{}
             console.log({ props })
-            
-            
+        }else{
+            try{
+           
+                const {data}= await postans.request({
+                   "questionId": props.data?.data?.id,
+                   "answer": inputval
+       
+                })
+                if (inputval === props.ans) {
+                    props.setsubmit(true)
+                    setTimeout(() => {
+                        props.nextQ()
+                        document.getElementById("cls").click();
+                        // props.setsubmit(false)
+                        console.log("aaaaaaaa")
+                        // setInput("")
+                        // props.chan("")
+                    }, 1000);
+                }
+                else{
+                    props.setsubmit(false)
+
+                }
+                setInput("")
+                console.log("ansresponse",data)
             }
+            catch{}
+        }
+            
+            // }
             
             
             
         }
-        const graphvalues=`x = ${graphInput.x}, y = ${graphInput.y}`
 
-  
+  console.log("modeltogooooooooooooo",modeltogle)
     return (
         <>
             <p>
             {/* Graph these points: L1 (8,5) L2 (3,7)  */}
 {/*  */}
+
              Q:   {props?.data?.data?.Statement}
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div className='questiondiv' >
                 {props.details?.UserComplexityLevel>1?
-                 <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} /> 
-                :         
+                <>
+                
+                 <input required="true" name='answer'   value={inputval} className={classes.answerFeild} onChange={e => { setInput(e.target.value) }} /> 
+                 {/* {!inputval?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""} */}
+                 </>
+                 :         
                 <Donut
                 ans={props.ans}
                 gInput={setGraphInput}
@@ -76,10 +134,9 @@ const hidemodal = async ()  => {
                 
                 {/* <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} /> */}
             </div>
-                {/* {inputval===false?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""} */}
             <div className="mt-3">
-              {props.val}
-                    <button className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={props.val !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
+            {/* {modeltogle }---{props.ans} */}
+                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
                   
 
             </div>
@@ -93,6 +150,7 @@ const hidemodal = async ()  => {
                                 <h4>Fantastic!</h4></section>
                         </div>
                         <button type="button" id="cls" className="close border-0" data-bs-dismiss="modal" aria-label="Close">
+        
                             {/* <span aria-hidden="true">&times;</span> */}
                         </button>
                     </div>
