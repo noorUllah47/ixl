@@ -211,6 +211,8 @@ function removePoint(index){
         }
       },
       xAxis: {
+        tickInterval: 1,
+
         gridLineWidth: 1,
         minPadding: 0.2,
         maxPadding: 0.2,
@@ -225,7 +227,12 @@ function removePoint(index){
         }]
       },
       yAxis: {
-        
+        tickInterval: 1,
+
+        minorGridLineColor: '#E0E0E0',
+        minorGridLineWidth: 1,
+        minorTickLength: 0,
+        // minorTickInterval: 'auto',
         title: {
           text: 'Value'
         },
