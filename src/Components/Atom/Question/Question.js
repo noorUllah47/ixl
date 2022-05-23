@@ -81,7 +81,8 @@ const Question = (props) => {
                    "answer": inputval
        
                 })
-                if (inputval === props.ans) {
+                console.log(inputval.replace(/\s/g, ''),"=== ",props.ans.replace(/\s/g, ''))
+                                if (inputval.replace(/\s/g, '') === props.ans.replace(/\s/g, '')) {
                     props.setsubmit(true)
                     setTimeout(() => {
                         props.nextQ()
@@ -136,7 +137,7 @@ const Question = (props) => {
             </div>
             <div className="mt-3">
             {/* {modeltogle }---{props.ans} */}
-                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
+                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle?.replace(/\s/g, '') !== props.ans.replace(/\s/g, '')? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
                   
 
             </div>
