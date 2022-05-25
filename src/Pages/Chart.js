@@ -118,7 +118,7 @@ function Donut({ans,gInput}) {
   const [series, setseries] = useState(     [{
     id:1,
     name: 'Jane',
-    data: [6]
+    data: [[8,9]]
 }, ]
            )
 
@@ -162,11 +162,17 @@ function Donut({ans,gInput}) {
 
   gInput({x:series[0].data[0][0],y:series[0].data[0][1]})
 }
-function removePoint(index){
-  // const list =[...series];
-  // list.splice(index,1)
+function removePoint(x,y){
+  // const list =[...series[0].data];
+  // list.splice(index,0)
+  // chart.series[0].data[0].remove()
+  series[0].data[0][0]=x
+  series[0].data[0][1]=y
+
+  highChartsRender()
+  console.log("00000000000===============>",chart.series)
   // setseries(list)
-  chart.series[0].removePoint(0);
+  // chart.series[0].removePoint(0);
 }
         const [Line, setLine] = useState(0)
   function highChartsRender() {
@@ -185,14 +191,18 @@ function removePoint(index){
             var x = Math.round(e.xAxis[0].value),
               y = Math.round(e.yAxis[0].value),
               series = this.series[Line];
-
-
-    
-            // Add it
-            if(this.series[Line].data.length<1){
-            series.addPoint([x, y]);
-            getPoint()
+              // Add it
+              if(this.series[0].data.length===1){
+                removePoint(x,y)
+                console.log("ssssssssss",series) 
+                getPoint()
+              }
+              if(this.series[0].data.length<1){
+                getPoint()
+                
+                series.addPoint([x, y]);
             }
+           
           }
         },
         renderTo: 'atmospheric-composition'

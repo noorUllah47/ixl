@@ -1,0 +1,27 @@
+.green2_text, .green2_text:hover {
+    color: #c83131;
+  }
+  .description {
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .skill_tree_body {
+    margin: 20px 0 20px 20px;
+  }
+  .skills_list{
+    width: 33.33333%;
+    white-space: normal;
+  }
+  .skill_ol{
+    white-space: normal;
+    margin: 10px 0;
+    padding: 0;
+  }
+  .skill_tree_skill_node {
+    line-height: 15px;
+    margin: 8px 0 8px 20px;
+    position: relative;
+    list-style: none;
+    display: table-cell;
+    padding-right: 4px;
+}
