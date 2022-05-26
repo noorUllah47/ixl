@@ -1,10 +1,9 @@
 import React, { useState ,useEffect} from 'react'
-import classes from './Qstn.module.css'
-import * as api from "../../../api/api"
-import useApi from "../../../Hooks/useApi";
-import Donut from '../../../Pages/Chart';
+import classes from '../Components/Atom/Question/Qstn.module.css'
+import * as api from "../api/api"
+import useApi from "../Hooks/useApi";
 
-const Question = (props) => {
+const MultiplyQuestion = (props) => {
     console.log("Expected asnswewe",props.ans, props.data?.data?.id)
     const [inputval, setInput] = useState();
     const [modeltogle, setModeltogle] = useState()
@@ -14,7 +13,7 @@ const Question = (props) => {
     });
     console.log("finallllllllllll-----------------",graphInput)
     const graphvalues=`x = ${graphInput.x}, y = ${graphInput.y}`
-    const postans= useApi(api.answerSubmit)
+    const postans= useApi(api.answerSubmitMultiply)
     console.log(inputval)
     useEffect(() => {
     
@@ -34,46 +33,8 @@ const Question = (props) => {
     }, [graphvalues])
     
     const hidemodal = async ()  => {
-    // if(props.details.UserComplexityLevel<1){
-        // props.chan(graphInput)
-    // }
-
-    // props.setsubmit(true)
-    // if(graphvalues){
-    //         props.setsubmit(false)
-    //         setInput(false)
-    //     }
-        // else{
-            
-            if(props.details?.UserComplexityLevel===1){
-            try{
-           
-                const {data}= await postans.request({
-                   "questionId": props.data?.data?.id,
-                   "answer": graphvalues
-       
-                })
-                if (graphvalues === props.ans) {
-                    props.setsubmit(true)
-
-                    setTimeout(() => {
-                        props.nextQ()
-                        document.getElementById("cls").click();
-                        // props.setsubmit(false)
-                        console.log("aaaaaaaa")
-                        // setInput("")
-                        // props.chan("")
-                    }, 1000);
-                }
-                else{
-                    props.setsubmit(false)
-
-                }
-                console.log("ansresponse",data)
-            }
-            catch{}
-            console.log({ props })
-        }else{
+    
+     
             try{
            
                 const {data}= await postans.request({
@@ -81,7 +42,7 @@ const Question = (props) => {
                    "answer": inputval
        
                 })
-                if (inputval?.replace(/\s/g, '') === props.ans.replace(/\s/g, '')) {
+                if (inputval === props.ans) {
                     props.setsubmit(true)
                     setTimeout(() => {
                         props.nextQ()
@@ -100,15 +61,14 @@ const Question = (props) => {
                 console.log("ansresponse",data)
             }
             catch{}
-        }
-            
+    
+          
             // }
             
             
             
         }
 
-  console.log("modeltogooooooooooooo",modeltogle)
     return (
         <>
             <p>
@@ -119,25 +79,21 @@ const Question = (props) => {
                 </p>
             {/* <p className="fw-700">five</p> */}
             <div className='questiondiv' >
-                {props.param_id>1?
-                <>
+             
+                
                 
                  <input required="true" name='answer'   value={inputval} className={classes.answerFeild} onChange={e => { setInput(e.target.value) }} /> 
                  {/* <input type="submit" hidden /> */}
                  {/* {!inputval?<span style={{fontSize:"16px",color:"red"}}> fill this </span>:""} */}
-                 </>
-                 :         
-                <Donut
-                ans={props.ans}
-                gInput={setGraphInput}
-                />
-                }
+                 
+               
+                
                 
                 {/* <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} /> */}
             </div>
             <div className="mt-3">
             {/* {modeltogle }---{props.ans} */}
-                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle?.replace(/\s/g, '') !== props.ans.replace(/\s/g, '')? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
+                    <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={inputval !== props.ans? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
                   
 
             </div>
@@ -161,4 +117,4 @@ const Question = (props) => {
     );
 }
 
-export default Question;
+export default MultiplyQuestion;

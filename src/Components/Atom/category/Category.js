@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import classes from './category.module.css'
 function Category() {
   return (
-    <React.Fragment>
+    <>
     <div>
         <header class="skill-tree-header" >
     <h1 class={`crisp-splash-header topic-graphs ${classes.green2_text} mx-4`}>
@@ -19,25 +20,28 @@ Excercises    </h1>
 <li className={`${classes.skill_tree_skill_node}`}>
 <div className='mt-3'>
 <span class="skill-tree-skill-number" >E.1</span>
-<a href='/'  className='mx-2 skill_link mt-3'>Multiplications</a>
+<Link to={{ pathname:`Multiply`,state: { name: "Ali" }}} className=' skill_link mx-2' >Multiplications</Link>
+
 </div>
 <div className='mt-3'>
 <span class="skill-tree-skill-number" >E.2</span>
-<a href='/' className=' skill_link mx-2'>Plot Grpahs</a>
+<Link to={{ pathname:`/questions/${1}`,state: { name: "Ali" }}} className=' skill_link mx-2' >Plot Grpahs </Link>
+
 </div> 
 <div className='mt-3'>
 <span class="skill-tree-skill-number" >E.3</span>
-<a href='/' className=' skill_link mx-2'>Gradient / Intersection </a>
+<Link to={{ pathname:`/questions/${2}`,state: { name: "Ali" }}} className=' skill_link mx-2' >Gradient / Intersection </Link>
+
 </div>
 <div className='mt-3'>
 <span class="skill-tree-skill-number" >E.3</span>
-<a href='/' className=' skill_link mx-2'>Equations </a>
+<Link to={{ pathname:`/questions/${3}`,state: { name: "Ali" }}} className=' skill_link mx-2' >Equations </Link>
 </div>
 </li>
 </ol>
 </div>
   </div>
-  </React.Fragment>
+  </>
   )
 }
 

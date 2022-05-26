@@ -8,14 +8,17 @@ import CustomNodeFlow from "../Pages/Chart";
 import Chartt from "../Pages/Chart";
 import Chart from "../Pages/Chart";
 import Home from "../Pages/Home/Home";
+import Multiplication from "../Pages/Multiplication";
 
 const MainComponent = () => {
   return (
     <>
     {/* <Donut /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category" element={<Category />} />
+      <Route path="/Multiply" element={<Multiplication />} />
+        
+        <Route path="/questions/:id" element={<Home />} />
+        <Route path="/" element={<Category />} />
 
 
         
