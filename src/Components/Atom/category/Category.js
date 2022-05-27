@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LayOut from '../../../Pages/LayOut'
 import classes from './category.module.css'
 function Category() {
   return (
     <>
     <div>
+      <LayOut/>
         <header class="skill-tree-header" >
     <h1 class={`crisp-splash-header topic-graphs ${classes.green2_text} mx-4`}>
 Excercises    </h1>

@@ -50,7 +50,7 @@ function Donut({ans,gInput}) {
 
   gInput({x:series[0].data[0][0],y:series[0].data[0][1]})
 }
-function removePoint(x,y){
+function movePoint(x,y){
   // const list =[...series[0].data];
   // list.splice(index,0)
   // chart.series[0].data[0].remove()
@@ -81,7 +81,7 @@ function removePoint(x,y){
               series = this.series[Line];
               // Add it
               if(this.series[0].data.length===1){
-                removePoint(x,y)
+                movePoint(x,y)
                 console.log("ssssssssss",series) 
                 getPoint()
               }

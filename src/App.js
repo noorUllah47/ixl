@@ -4,8 +4,8 @@ import MainComponent from "./Routes/MainComponent";
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <ScnNav />
+      {/* <Navbar />
+      <ScnNav /> */}
       <div>
         <MainComponent />
       </div>

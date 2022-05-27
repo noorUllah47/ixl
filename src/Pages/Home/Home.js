@@ -7,6 +7,7 @@ import classes from "./Home.module.css";
 import * as api from "../../api/api";
 import useApi from "../../Hooks/useApi";
 import { useParams } from "react-router-dom";
+import LayOut from "../LayOut";
 // interface User {
 //     // BOardid: number;
 //   }
@@ -85,6 +86,7 @@ const Home = () => {
   return (
     <>
       <div>
+        <LayOut/>
         <div className="bg-light">
           <div className="container">
             <BreadCrumbs data={getQ.data?.data} />
@@ -124,6 +126,8 @@ const Home = () => {
             />
           </div>
         </div>
+        
+
       </div>
     </>
   );

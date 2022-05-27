@@ -8,6 +8,7 @@ import * as api from "../api/api";
 import useApi from "../Hooks/useApi";
 import { useParams } from "react-router-dom";
 import MultiplyQuestion from "./MultiplyQuestions";
+import LayOut from "./LayOut";
 // interface User {
 //     // BOardid: number;
 //   }
@@ -72,6 +73,7 @@ const Multiplication = () => {
   return (
     <>
       <div>
+        <LayOut/>
         <div className="bg-light">
           <div className="container">
             <BreadCrumbs data={getQ.data?.data} />
@@ -111,6 +113,7 @@ const Multiplication = () => {
             />
           </div>
         </div>
+       
       </div>
     </>
   );
