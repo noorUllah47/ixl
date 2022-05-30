@@ -25,8 +25,8 @@ const Multiplication = () => {
   const getQ = useApi(api.GetMultiplyQuestions);
   const Startnewb = useApi(api.StartNewboardMultiply);
   const getMulDetails = useApi(api.GetBoardDetailsOfMlt);
-  const complexity = useApi(api.UserComplexity);
-  const getBDetails = useApi(api.GetBoardDetails);
+  // const complexity = useApi(api.UserComplexity);
+  // const getBDetails = useApi(api.GetBoardDetails);
   const deleteboard = useApi(api.DeleteBoard);
   
   async function handleDelete(id) {

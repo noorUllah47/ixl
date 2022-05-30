@@ -8,6 +8,7 @@ import * as api from "../../api/api";
 import useApi from "../../Hooks/useApi";
 import { useParams } from "react-router-dom";
 import LayOut from "../LayOut";
+import nprogress from "nprogress";
 // interface User {
 //     // BOardid: number;
 //   }
@@ -76,8 +77,11 @@ const Home = () => {
 
   console.log("ssssssssssssssfafsads",param_id)
   useEffect(() => {
-  
+    nprogress.start();
     fetchQData();
+    return () => {
+      nprogress.done();
+  };
   }, [param_id,BOardid]);
 
   const expectedAns =getQ?.data?.data?.ExpectedAnswer + "";

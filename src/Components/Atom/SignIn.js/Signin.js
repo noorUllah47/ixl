@@ -1,5 +1,6 @@
 import React ,{useState}from "react";
-
+import { Formik, Field, Form } from 'formik';
+import styles from "./signin.module.css"
 function SignIn() {
   const [initialValues, setinitialValues] = useState({
     username:"",
@@ -7,50 +8,64 @@ function SignIn() {
   })
 
   function HandleChange(e){
-console.log(e.target.value)
+console.log(e.target.value,e.target.name)
+
+
   }
+  function handleSubmit(values){
+    
+    console.log(values)
+    setinitialValues(values)
+  }
+  console.log("aaaa",initialValues)
   return (
     <div>
-      <div className="desktop-signin-dialog shared-signin-dialog">
-        <div class="dialog-decoration">
-          <div class="signin-image-math"></div>
+       <Formik
+    initialValues={initialValues}
+      onSubmit={handleSubmit}
+    >
+        
+        <Form>
+      <div className={`${styles.desktop_signin_dialog} ${styles.shared_signin_dialog}`}>
+        <div class={`${styles.dialog_decoration}`}>
+          <div class={`${styles.signin_image_math}`}></div>
         </div>
-        <div className="dialog-content">
-          <form>
-            <h2 className="form-header"></h2>
-            <div className="label-forgot-info">
-              <label class="si-field-label signin-field-label" >
+        <div className={`${styles.dialog_content}`}>
+        
+            <h2 className={`${styles.form_header}`}>Sign in </h2>
+            <div className={`${styles.label_forgot_info}`}>
+              <label className={`${styles.si_field_label} ${styles.signin_field_label} `}>
                 Username
               </label>
-              <button type="button" class="forgot-info-button">
+              <button type="button" className={`${styles.forgot_info_button}`}>
                 Forgot username?
               </button>
             </div>
-            <div class="si-input-container">
-              <input
-                onChange={HandleChange}
-
+            <div class="si-Field-container">
+              <Field
+                // onChange={HandleChange}
+                name="username"
                 id="username"
-                class="si-text-field "
+                className={`${styles.si_text_field }`}
                 type="text"
                 required=""
                 placeholder=""
                 // value={initialValues.username}
               />
             </div>
-            <div className="label-forgot-info">
-              <label class="si-field-label signin-field-label" for="username">
+            <div className={`${styles.label_forgot_info} mt-2`}>
+              <label className={`${styles.si_field_label} ${styles.signin_field_label} `} for="username">
                 Password
               </label>
-              <button type="button" class="forgot-info-button">
+              <button type="button" className={`${styles.forgot_info_button}`}>
                 Forgot password?
               </button>
             </div>
-            <div class="si-input-container">
-              <input
-                onChange={HandleChange}
-              
-                class="si-text-field "
+            <div class="si-Field-container">
+              <Field
+                // onChange={HandleChange}
+                name="password"
+                className={`${styles.si_text_field }`}
                 type="password"
                 required="" 
                 placeholder=""
@@ -59,29 +74,34 @@ console.log(e.target.value)
               />
              
             </div>
-            <div class="form-bottom">
-              <span class="remember-me-container">
-                <input
+            <div class={`${styles.form_bottom}`}>
+              <span className={`${styles.remember_me_container}`}>
+                <Field
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
                   class="checkbox"
                 />
-                <label class="si-field-label " for="remember-me">
+                <label class={`${styles.si_field_label} mx-2`} for="remember-me">
                   Remember
                 </label>
               </span>
               <button
                 name="signin"
-                class="info-cta-btn info-cta-green info-cta-40-16 submit-btn"
+                class={`info-cta-btn ${styles.info_cta_green} info-cta-40-16 ${styles.submit_btn}`}
                 type="submit"
               >
                 Sign in
               </button>
             </div>
-          </form>
+         
         </div>
       </div>
+      </Form>
+      </Formik>
+    
+    
+    
     </div>
   );
 }
