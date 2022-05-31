@@ -36,8 +36,8 @@ Excercises    </h1>
 
 </div>
 <div className='mt-3'>
-<span class="skill-tree-skill-number" >E.3</span>
-<Link to={{ pathname:`/questions/${3}`,state: { name: "Ali" }}} className=' skill_link mx-2' >Equations </Link>
+<span class="skill-tree-skill-number" >E.4</span>
+<Link to={{ pathname:`/questions/${4}`,state: { name: "Ali" }}} className=' skill_link mx-2' >Equations </Link>
 </div>
 </li>
 </ol>

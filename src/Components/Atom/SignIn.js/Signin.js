@@ -1,12 +1,16 @@
 import React ,{useState}from "react";
 import { Formik, Field, Form } from 'formik';
 import styles from "./signin.module.css"
+import * as Yup from 'yup';
 function SignIn() {
   const [initialValues, setinitialValues] = useState({
-    username:"",
+    email:"",
     password:""
   })
-
+  const SignInSchema = Yup.object().shape({
+    email: Yup.string().required('Required'),
+    password:Yup.string().required('Required'),
+  })
   function HandleChange(e){
 console.log(e.target.value,e.target.name)
 
@@ -15,16 +19,15 @@ console.log(e.target.value,e.target.name)
   function handleSubmit(values){
     
     console.log(values)
-    setinitialValues(values)
   }
-  console.log("aaaa",initialValues)
   return (
     <div>
        <Formik
     initialValues={initialValues}
       onSubmit={handleSubmit}
+      validationSchema={SignInSchema}
     >
-        
+         {({ errors, touched }) => (
         <Form>
       <div className={`${styles.desktop_signin_dialog} ${styles.shared_signin_dialog}`}>
         <div class={`${styles.dialog_decoration}`}>
@@ -35,26 +38,27 @@ console.log(e.target.value,e.target.name)
             <h2 className={`${styles.form_header}`}>Sign in </h2>
             <div className={`${styles.label_forgot_info}`}>
               <label className={`${styles.si_field_label} ${styles.signin_field_label} `}>
-                Username
+                email
               </label>
               <button type="button" className={`${styles.forgot_info_button}`}>
-                Forgot username?
+                Forgot email?
               </button>
             </div>
             <div class="si-Field-container">
               <Field
                 // onChange={HandleChange}
-                name="username"
-                id="username"
+                name="email"
+                id="email"
                 className={`${styles.si_text_field }`}
                 type="text"
                 required=""
                 placeholder=""
-                // value={initialValues.username}
+                // value={initialValues.email}
               />
+               {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
             </div>
             <div className={`${styles.label_forgot_info} mt-2`}>
-              <label className={`${styles.si_field_label} ${styles.signin_field_label} `} for="username">
+              <label className={`${styles.si_field_label} ${styles.signin_field_label} `} for="email">
                 Password
               </label>
               <button type="button" className={`${styles.forgot_info_button}`}>
@@ -72,6 +76,7 @@ console.log(e.target.value,e.target.name)
                 // autocomplete="off"
                 // value={initialValues.password}
               />
+               {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
              
             </div>
             <div class={`${styles.form_bottom}`}>
@@ -98,6 +103,7 @@ console.log(e.target.value,e.target.name)
         </div>
       </div>
       </Form>
+       )}
       </Formik>
     
     

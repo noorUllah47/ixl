@@ -19,9 +19,9 @@ const Home = () => {
   let { id: param_id } = useParams();
   const [answer, setanswer] = useState("");
   const [submit, setsubmit] = useState(true);
-  const [BOardid, setBoardid] = useState(9);
+  const [BOardid, setBoardid] = useState(10);
   const [resett, setreset] = useState(0);
-
+  const [paramID, setparamID] = useState()
   const getMultiply = useApi(api.GetMultiplyQuestions);
   const getQ = useApi(api.GetBoardQuestion);
   const Startnewb = useApi(api.StartNewboard);
@@ -29,14 +29,8 @@ const Home = () => {
   const complexity = useApi(api.UserComplexity);
   const getBDetails = useApi(api.GetBoardDetails);
   const deleteboard = useApi(api.DeleteBoard);
-  async function handleMultipleQuestions() {
-    try {
-      const { data } = await getMultiply.request(BOardid);
-      await getMulDetails.request(BOardid);
 
-      console.log("Multilpyt =======.>///", data);
-    } catch (error) {}
-  }
+  
   async function handleDelete(id) {
     console.log("Clicked", id);
     try {
@@ -45,23 +39,15 @@ const Home = () => {
     } catch {}
   }
   async function fetchQData() {
-    if (param_id === "4") {
-      try {
-        const { data } = await getMultiply.request(BOardid);
-        await getMulDetails.request(BOardid);
-
-        console.log("Multilpyt =======.>///", data.data);
-      } catch (error) {}
-    }else{
-    try {
+  
         await getBDetails.request(BOardid);
       await complexity.request({
         id: BOardid,
-        UserComplexityLevel: param_id,
+        UserComplexityLevel: paramID,
       });
       const { data } = await getQ.request(BOardid);
-    } catch (error) {}}
-  }
+    } 
+  
   async function StartNew() {
     setreset(1);
 
@@ -75,18 +61,19 @@ const Home = () => {
   console.log("Question", getQ?.data);
   console.log("GetBoard detaile", getBDetails.data);
 
-  console.log("ssssssssssssssfafsads",param_id)
+  console.log("sssssssssfafsads",param_id,paramID)
   useEffect(() => {
+    setparamID(param_id)
     nprogress.start();
     fetchQData();
     return () => {
       nprogress.done();
   };
-  }, [param_id,BOardid]);
+  }, [ paramID, BOardid]);
 
   const expectedAns =getQ?.data?.data?.ExpectedAnswer + "";
   const Details =  getBDetails?.data?.data;
-  console.log("answer", answer, expectedAns);
+  console.log("answer===================>", answer, expectedAns);
   return (
     <>
       <div>
@@ -111,7 +98,7 @@ const Home = () => {
                 />
               ) : (
                 <Question
-                  param_id={param_id}
+                  param_id={paramID}
                   details={Details}
                   chan={setanswer}
                   val={answer}

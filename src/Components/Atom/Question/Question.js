@@ -3,9 +3,10 @@ import classes from './Qstn.module.css'
 import * as api from "../../../api/api"
 import useApi from "../../../Hooks/useApi";
 import Donut from '../../../Pages/Chart';
+import { Link } from 'react-router-dom';
 
 const Question = (props) => {
-    console.log("Expected asnswewe",props.ans, props.data?.data?.id)
+    console.log("Expected asnswewe",props.ans, props.data?.data?.id,"param",props.param_id)
     const [inputval, setInput] = useState();
     const [modeltogle, setModeltogle] = useState()
     const [graphInput, setGraphInput] = useState({
@@ -23,7 +24,7 @@ const Question = (props) => {
             else{
            setModeltogle(inputval)
             }
-    }, [inputval])
+    }, [props.param_id,inputval])
     useEffect(() => {
     
         if(props.details?.UserComplexityLevel===1){
@@ -31,9 +32,10 @@ const Question = (props) => {
             else{
            setModeltogle(inputval)
             }
-    }, [graphvalues])
+    }, [props.param_id,graphvalues])
     
     const hidemodal = async ()  => {
+        props.chan(inputval)
     // if(props.details.UserComplexityLevel<1){
         // props.chan(graphInput)
     // }
@@ -46,6 +48,7 @@ const Question = (props) => {
         // else{
             
             if(props.details?.UserComplexityLevel===1){
+                props.chan(graphvalues)
             try{
            
                 const {data}= await postans.request({
@@ -107,7 +110,9 @@ const Question = (props) => {
             
             
         }
-
+function handleNext(){
+    window.reload()
+}
   console.log("modeltogooooooooooooo",modeltogle)
     return (
         <>
@@ -135,9 +140,13 @@ const Question = (props) => {
                 
                 {/* <input required="true" name='answer' value={props.val} className={classes.answerFeild} onChange={e => { props.chan(e.target.value) }} /> */}
             </div>
-            <div className="mt-3">
+            <div className="mt-3 d-flex ">
             {/* {modeltogle }---{props.ans} */}
                     <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle?.replace(/\s/g, '') !== props.ans.replace(/\s/g, '')? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
+                   { props.param_id==="2"? <Link to={{ pathname:`/questions/${3}`,state: { name: "Ali" }}} onClick={handleNext} className=' btn btn-primary skill_link mx-2' >Next </Link>
+:""}
+   { props.param_id==="3"? <Link to={{ pathname:`/questions/${2}`,state: { name: "Ali" }}} onClick={handleNext} className=' btn btn-primary skill_link mx-2' >back </Link>
+:""}
                   
 
             </div>

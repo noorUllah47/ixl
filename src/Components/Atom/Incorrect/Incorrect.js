@@ -3,6 +3,7 @@ import Explaination from '../Explaination/Explaination';
 import classes from './incorect.module.css'
 
 const Incorect = (props) => {
+    console.log("ansnnnnnnnnnnnn",props.val)
     const backtoQ = () => {
         console.log({ props })
      

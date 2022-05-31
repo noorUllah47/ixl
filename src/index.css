@@ -137,3 +137,7 @@ input{
   text-decoration: none;
   vertical-align: top;
 }
+.error{
+  color: red;
+  font-size: 12px;
+}
