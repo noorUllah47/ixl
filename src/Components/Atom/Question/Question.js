@@ -143,11 +143,11 @@ function handleNext(){
             <div className="mt-3 d-flex ">
             {/* {modeltogle }---{props.ans} */}
                     <button type="submit" className="bg-lgtGreen border-0 text-white rounded px-3 py-1" data-bs-toggle={modeltogle?.replace(/\s/g, '') !== props.ans.replace(/\s/g, '')? "":"modal"} data-bs-target="#exampleModal" onClick={hidemodal}>Submit</button>
-                   { props.param_id==="2"? <Link to={{ pathname:`/questions/${3}`,state: { name: "Ali" }}} onClick={handleNext} className=' btn btn-primary skill_link mx-2' >Next </Link>
+                   {/* { props.param_id==="2"? <Link to={{ pathname:`/questions/${3}`,state: { name: "Ali" }}}className=' btn btn-primary skill_link mx-2' >Next </Link>
 :""}
    { props.param_id==="3"? <Link to={{ pathname:`/questions/${2}`,state: { name: "Ali" }}} onClick={handleNext} className=' btn btn-primary skill_link mx-2' >back </Link>
 :""}
-                  
+                   */}
 
             </div>
 
