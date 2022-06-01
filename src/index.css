@@ -141,3 +141,7 @@ input{
   color: red;
   font-size: 12px;
 }
+.instruction{
+  background: whitesmoke;
+  width:350px;
+}

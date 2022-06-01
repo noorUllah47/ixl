@@ -121,7 +121,11 @@ function handleNext(){
 {/*  */}
 
              Q:   {props?.data?.data?.Statement}
+            
                 </p>
+               <div className='instruction mb-3'>
+                   {props.param_id==="4"&&<span className='mx-3 fw-bold'>Solve according to : y = mx + c</span>}
+               </div>
             {/* <p className="fw-700">five</p> */}
             <div className='questiondiv' >
                 {props.param_id>1?
