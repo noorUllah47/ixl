@@ -34,7 +34,7 @@ const MultiplyQuestion = (props) => {
     
     const hidemodal = async ()  => {
     
-     
+     props.chan(inputval)
             try{
            
                 const {data}= await postans.request({
@@ -72,12 +72,10 @@ const MultiplyQuestion = (props) => {
     return (
         <>
             <p>
-            {/* Graph these points: L1 (8,5) L2 (3,7)  */}
 {/*  */}
 
              Q:   {props?.data?.data?.Statement}
                 </p>
-            {/* <p className="fw-700">five</p> */}
             <div className='questiondiv' >
              
                 

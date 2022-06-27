@@ -14,9 +14,6 @@ import LayOut from "./LayOut";
 //   }
 
 const Multiplication = () => {
-
-   
-  let { id: param_id } = useParams();
   const [answer, setanswer] = useState("");
   const [submit, setsubmit] = useState(true);
   const [BOardid, setBoardid] = useState(10);
@@ -25,10 +22,9 @@ const Multiplication = () => {
   const getQ = useApi(api.GetMultiplyQuestions);
   const Startnewb = useApi(api.StartNewboardMultiply);
   const getMulDetails = useApi(api.GetBoardDetailsOfMlt);
-  // const complexity = useApi(api.UserComplexity);
-  // const getBDetails = useApi(api.GetBoardDetails);
+
   const deleteboard = useApi(api.DeleteBoard);
-  
+
   async function handleDelete(id) {
     console.log("Clicked", id);
     try {
@@ -37,15 +33,12 @@ const Multiplication = () => {
     } catch {}
   }
   async function fetchQData() {
-  
-      try {
-        const { data } = await getQ.request(BOardid);
-        await getMulDetails.request(BOardid);
+    try {
+      const { data } = await getQ.request(BOardid);
+      await getMulDetails.request(BOardid);
 
-        console.log("Multilpyt =======.>///", data.data.ExpectedAnswer);
-      } catch (error) {}
-   
-    
+      console.log("Multilpyt =======.>///", data.data.ExpectedAnswer);
+    } catch (error) {}
   }
   async function StartNew() {
     setreset(1);
@@ -58,22 +51,21 @@ const Multiplication = () => {
     } catch (error) {}
   }
   // console.log("Board new",BOardid)
-//   console.log("Question", getQ?.data);
+  //   console.log("Question", getQ?.data);
   console.log("GetBoard detaile", getMulDetails?.data?.data);
 
-  console.log("ssssssssssssssfafsads",getQ?.data?.data?.ExpectedAnswer)
+  console.log("ssssssssssssssfafsads", getQ?.data?.data?.ExpectedAnswer);
   useEffect(() => {
-  
     fetchQData();
   }, [BOardid]);
 
-  const expectedAns =getQ?.data?.data?.ExpectedAnswer +""
-  const Details =  getMulDetails?.data?.data;
+  const expectedAns = getQ?.data?.data?.ExpectedAnswer + "";
+  const Details = getMulDetails?.data?.data;
   console.log("answer", answer, expectedAns);
   return (
     <>
       <div>
-        <LayOut/>
+        <LayOut />
         <div className="bg-light">
           <div className="container">
             <BreadCrumbs data={getQ.data?.data} />
@@ -113,7 +105,6 @@ const Multiplication = () => {
             />
           </div>
         </div>
-       
       </div>
     </>
   );

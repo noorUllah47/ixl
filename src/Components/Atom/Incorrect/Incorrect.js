@@ -1,8 +1,11 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import Explaination from '../Explaination/Explaination';
 import classes from './incorect.module.css'
 
-const Incorect = (props) => {
+const 
+Incorect = (props) => {
+  
+    
     console.log("ansnnnnnnnnnnnn",props.val)
     const backtoQ = () => {
         console.log({ props })

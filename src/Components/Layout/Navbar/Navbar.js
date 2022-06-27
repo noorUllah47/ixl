@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import classes from './Nav.module.css'
 import { useNavigate } from 'react-router-dom'
+import classes from './Nav.module.css'
 const Navbar = () => {
     const navigate=useNavigate()
     function handleClick(){

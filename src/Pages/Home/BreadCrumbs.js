@@ -6,7 +6,7 @@ const BreadCrumbs = ({data}) => {
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><NavLink className="text-black" to="/">Home</NavLink></li>
-                <li className="breadcrumb-item active text-black" aria-current="page"></li>
+                <li className="breadcrumb-item active text-black" aria-current="page">Excercise</li>
             </ol>
         </nav>
     );
