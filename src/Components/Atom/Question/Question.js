@@ -34,6 +34,36 @@ const Question = (props) => {
     }
   }, [props.param_id, inputval]);
 
+  function modalForGraph() {
+    setPopup(true);
+    if (graphvalues === props.ans) {
+      props.setsubmit(true);
+
+      setTimeout(() => {
+        props.nextQ();
+        document.getElementById("cls").click();
+        console.log("aaaaaaaa");
+      }, 1000);
+    } else {
+      props.setsubmit(false);
+      setPopup(false);
+    }
+  }
+  function modalForStatement() {
+    setPopup(true);
+    if (inputval?.replace(/\s/g, "") === props.ans.replace(/\s/g, "")) {
+      props.setsubmit(true);
+      setTimeout(() => {
+        props.nextQ();
+        document.getElementById("cls").click();
+        console.log("aaaaaaaa");
+      }, 1000);
+    } else {
+      props.setsubmit(false);
+    }
+
+    setPopup(false);
+  }
   //    get id from params and set values to toggle model
   useEffect(() => {
     if (props.param_id === "1") {
@@ -50,19 +80,8 @@ const Question = (props) => {
         questionId: props.data?.data?.id,
         answer: graphvalues,
       });
-      setPopup(true);
-      if (graphvalues === props.ans) {
-        props.setsubmit(true);
 
-        setTimeout(() => {
-          props.nextQ();
-          document.getElementById("cls").click();
-          console.log("aaaaaaaa");
-        }, 1000);
-      } else {
-        props.setsubmit(false);
-        setPopup(false);
-      }
+      modalForGraph();
       console.log("ansresponse", data);
     } catch {}
   };
@@ -73,20 +92,10 @@ const Question = (props) => {
         questionId: props.data?.data?.id,
         answer: inputval,
       });
-      setPopup(true);
-      if (inputval?.replace(/\s/g, "") === props.ans.replace(/\s/g, "")) {
-        props.setsubmit(true);
-        setTimeout(() => {
-          props.nextQ();
-          document.getElementById("cls").click();
-          console.log("aaaaaaaa");
-        }, 1000);
-      } else {
-        props.setsubmit(false);
-      }
+
+      modalForStatement();
       setInput("");
       console.log("ansresponse", data);
-      setPopup(false);
     } catch {}
   };
   //   fnal submit function
@@ -176,8 +185,7 @@ const Question = (props) => {
               className="close border-0"
               data-bs-dismiss="modal"
               aria-label="Close"
-            >
-            </button>
+            ></button>
           </div>
         </div>
       </div>
